@@ -1,5 +1,5 @@
-env
 sqlite3
 .env
 env
 /env
+env/
