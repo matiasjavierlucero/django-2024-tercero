@@ -1,5 +1,10 @@
+# SQLite database file
 sqlite3
+
+# Environment variables file
 .env
-env
+
+# Virtual environment
+/env/
 /env
-env/
+/env/*
