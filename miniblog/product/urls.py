@@ -17,6 +17,7 @@ from product.views.category_view import (
 from product.views.product_review_view import (
     ProductReviewCreateView,
     ProductReviewView,
+    ProductReviewDetailView,
 )
 
 urlpatterns = [
@@ -43,11 +44,16 @@ urlpatterns = [
     path(
         route="product_reviews/",
         view=ProductReviewView.as_view(),
-        name="  ",
+        name="product_reviews",
     ),
     path(
         route="product_reviews/create",
         view=ProductReviewCreateView.as_view(),
         name="product_reviews_create",
+    ),
+    path(
+        route="product_reviews/<int:id>",
+        view=ProductReviewDetailView.as_view(),
+        name="product_reviews_detail",
     ),
 ]

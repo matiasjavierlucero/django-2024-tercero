@@ -52,7 +52,6 @@ def category_update(request, id: int):
         dict(category=categoria)
     )
 
-
 def category_create(request):
     category_repository = CategoryRepository()
     if request.method == 'POST':

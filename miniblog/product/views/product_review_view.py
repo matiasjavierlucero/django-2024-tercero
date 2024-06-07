@@ -1,6 +1,7 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
 
+from product.models import ProductReview
 from product.repositories.product import ProductRepository
 from product.repositories.product_reviews import ProductReviewRepository
 
@@ -45,3 +46,15 @@ class ProductReviewCreateView(View):
             rating=value,
         )
         return redirect('product_reviews')
+
+
+class ProductReviewDetailView(View):
+    def get(self, request, id):
+        review = get_object_or_404(ProductReview, id=id)
+        return render(
+            request,
+            'product_reviews/detail.html',
+            dict(
+                review=review
+            )
+        )
