@@ -1,7 +1,6 @@
 asgiref==3.8.1
 asttokens==2.4.1
 backcall==0.2.0
-backports.zoneinfo==0.2.1
 certifi==2024.2.2
 charset-normalizer==3.3.2
 decorator==5.1.1
@@ -26,3 +25,4 @@ traitlets==5.14.3
 typing-extensions==4.11.0
 urllib3==2.2.1
 wcwidth==0.2.13
+requests

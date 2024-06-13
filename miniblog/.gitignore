@@ -8,3 +8,15 @@ sqlite3
 /env/
 /env
 /env/*
+
+.env
+env/
+env/*
+
+../env
+..env
+*env
+env*
+
+.pyc
+*pyc
