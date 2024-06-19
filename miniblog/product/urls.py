@@ -43,7 +43,7 @@ urlpatterns = [
     path(
         route="product_reviews/",
         view=ProductReviewView.as_view(),
-        name="  ",
+        name="product_reviews",
     ),
     path(
         route="product_reviews/create",
