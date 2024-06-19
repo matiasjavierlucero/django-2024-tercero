@@ -16,3 +16,4 @@ env
 /env/*
 *env/
 miniblog/**/*.pyc
+miniblog/db.sqlite3
