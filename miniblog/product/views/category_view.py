@@ -31,7 +31,7 @@ def category_detail(request, id:int):
 
 def category_delete(request, id: int):
     category_repository = CategoryRepository()
-    categoria = category_repository.get_by_id(id)
+    categoria = category_repository.get_by_id(id=id)
     category_repository.delete(categoria)
     return redirect('category_list')
 

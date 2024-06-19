@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from product.models import Category
+from product.forms import ProductForm
 from product.repositories.product import ProductRepository
 
 repo = ProductRepository()
@@ -61,31 +62,25 @@ def product_update(request, id):
     )
 
 def product_create(request):
+    form = ProductForm(request.POST)
     if request.method == "POST":
-        name = request.POST.get('name')
-        description = request.POST.get('description')
-        price = request.POST.get('price')
-        stock = request.POST.get('stock')
-        id_category = request.POST.get('id_category')
-        category = Category.objects.get(id=id_category)
+        if form.is_valid():
+            producto_nuevo = repo.create(
+                nombre=form.cleaned_data['name'],
+                descripcion=form.cleaned_data['description'],
+                precio=form.cleaned_data['price'],
+                cantidades=form.cleaned_data['stock'],
+                categoria=form.cleaned_data['category']
+            )
+            return redirect('product_detail', producto_nuevo.id)
 
-        producto_nuevo = repo.create(
-            nombre=name,
-            descripcion=description,
-            precio=float(price),
-            cantidades=stock,
-            categoria=category
-        )
-        return redirect('product_detail', producto_nuevo.id)
 
     # TODO: reemplazar esta linea por el repositorio de categorias
     categorias = Category.objects.all()
     return render (
         request,
         'products/create.html',
-        dict(
-            categories=categorias
-        )
+        {'form':form}
     )
 
 def index_view(request):

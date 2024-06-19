@@ -1,0 +1,25 @@
+{% extends "home/base.html" %}
+{% block content %}
+    {% for valor in valores_dolar %}
+        <li>
+            <p>Mondeda: {{ valor.moneda }}</p>
+            <p>Nombre: {{ valor.nombre }}</p>
+            <p>Precio Compra: {{ valor.compra }}</p>
+        </li>
+    {% endfor %}
+<div class="container mt-3">
+    <h2>Detalles la Opinion</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ review.author }}</h5>
+            <p class="card-text">{{ review.product }}</p>
+            <p class="card-text"><strong>Opinion:</strong> {{ review.text }}</p>
+            <p class="card-text"><strong>Fecha:</strong> {{ review.date }}</p>
+            <p class="card-text"><strong>Valoracion:</strong> {{ review.ranking }}</p>
+            <a href="" class="btn btn-primary">Editar</a>
+            <a href="" class="btn btn-danger">Borrar</a>
+            <a href="{% url 'product_reviews' %}" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
