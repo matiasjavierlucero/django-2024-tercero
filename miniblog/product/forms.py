@@ -5,7 +5,7 @@ from .models import Category, Product, Supplier, ProductReview, PriceHistory, Pr
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = '__all__' #No recomendable
 
 
 class ProductForm(forms.ModelForm):
@@ -35,6 +35,13 @@ class ProductReviewForm(forms.ModelForm):
             "text",
             "rating",
         ]
+        widgets = {
+            'product': forms.Select(attrs={'class': 'form-control custom-class'}),
+            'author': forms.Select(attrs={'class': 'form-control custom-class'}),
+            'text': forms.TextInput(attrs={'class': 'form-control custom-class'}),
+            'rating': forms.NumberInput(attrs={'class': 'form-control custom-class'}),
+        }
+
 
 
 class PriceHistoryForm(forms.ModelForm):
@@ -45,4 +52,9 @@ class PriceHistoryForm(forms.ModelForm):
 class ProductImageForm(forms.ModelForm):
     class Meta:
         model = ProductImage
-        fields = '__all__'
+        fields = [
+            'product',
+            'image',
+            'description',
+        ]
+        
