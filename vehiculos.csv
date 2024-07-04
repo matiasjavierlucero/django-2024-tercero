@@ -1,0 +1,104 @@
+Marca,Modelo,Año de Fabricacion,Cantidad de Puertas,Cilindrada,Tipo de Combustible,Pais de Fabricacion,Precio en dolares
+Toyota,Yaris,2007,4,2.0,Electric,Japan,56246
+BMW,X3,2006,4,1.4,Electric,South Korea,26706
+Honda,Civic,2003,2,3.0,Diesel,China,64551
+BMW,X3,2006,2,3.5,Diesel,Japan,73608
+Ford,Escape,2014,2,3.5,Hybrid,Brazil,27693
+BMW,3 Series,2011,4,1.6,Hybrid,China,74280
+Nissan,Rogue,2009,4,2.0,Gasoline,Germany,42632
+Kia,Sportage,2023,4,3.0,Hybrid,China,41437
+Toyota,Yaris,2014,2,2.4,Gasoline,India,38943
+Honda,CR-V,2009,2,4.0,Electric,South Korea,57661
+Ford,Explorer,2001,4,1.2,Gasoline,India,27829
+Ford,F-150,2017,2,1.8,Hybrid,India,17142
+Toyota,Corolla,2009,4,1.8,Hybrid,Germany,13008
+Chevrolet,Silverado,2005,4,1.6,Gasoline,Mexico,56030
+Nissan,Frontier,2019,4,3.0,Diesel,Germany,60940
+Nissan,Frontier,2007,4,1.2,Gasoline,India,41637
+Kia,Optima,2017,2,1.4,Diesel,Brazil,37971
+Mercedes-Benz,GLC,2009,4,2.0,Diesel,China,11912
+Kia,Optima,2020,2,4.0,Hybrid,South Korea,62164
+Kia,Rio,2023,2,1.6,Hybrid,Brazil,75724
+Toyota,Prius,2019,4,1.8,Hybrid,Japan,17083
+Honda,Accord,2016,2,2.0,Diesel,South Korea,57527
+Toyota,Prius,2019,4,1.6,Hybrid,Germany,42632
+BMW,3 Series,2009,4,1.0,Electric,China,13008
+Hyundai,Elantra,2003,2,3.5,Diesel,China,15875
+Honda,Fit,2012,4,3.5,Electric,India,73136
+Hyundai,Sonata,2020,2,1.4,Hybrid,Brazil,51880
+Mercedes-Benz,C-Class,2010,4,3.5,Gasoline,India,56030
+Chevrolet,Tahoe,2019,2,1.2,Diesel,China,58441
+Ford,Escape,2019,2,1.2,Gasoline,Japan,12454
+BMW,5 Series,2023,4,1.6,Gasoline,USA,62164
+Kia,Rio,2009,2,4.0,Hybrid,India,15875
+Hyundai,Santa Fe,2016,2,1.8,Gasoline,India,15875
+Nissan,Rogue,2011,4,2.4,Hybrid,South Korea,47207
+Hyundai,Sonata,2015,2,1.0,Hybrid,India,60940
+Ford,F-150,2007,2,2.0,Gasoline,Germany,13702
+Mercedes-Benz,GLE,2012,4,1.2,Diesel,Mexico,37425
+Kia,Sportage,2000,2,2.4,Gasoline,South Korea,58441
+Chevrolet,Equinox,2023,4,2.4,Hybrid,Germany,73488
+Honda,CR-V,2000,4,2.2,Electric,Brazil,74280
+Honda,CR-V,2009,2,2.0,Hybrid,South Korea,60940
+Chevrolet,Silverado,2021,2,3.5,Electric,USA,54282
+Mercedes-Benz,C-Class,2012,4,1.4,Hybrid,India,12043
+Ford,Escape,2013,4,3.5,Electric,Brazil,26922
+Mercedes-Benz,E-Class,2000,2,1.4,Diesel,China,15875
+Hyundai,Elantra,2013,2,1.2,Electric,USA,31026
+Kia,Sorento,2016,2,3.0,Electric,Germany,73136
+Honda,Accord,2004,2,4.0,Diesel,Germany,38649
+Honda,Civic,2008,2,4.0,Gasoline,Brazil,74280
+Ford,F-150,2003,2,1.2,Gasoline,India,51880
+Nissan,Altima,2020,4,1.8,Gasoline,USA,17142
+Toyota,Corolla,2004,4,3.0,Diesel,Germany,14362
+Kia,Optima,2014,2,2.2,Electric,Mexico,60940
+Hyundai,Santa Fe,2019,4,1.4,Electric,Germany,33774
+Kia,Sorento,2015,4,1.6,Hybrid,Germany,47207
+Ford,Mustang,2010,4,3.5,Electric,South Korea,27829
+Honda,CR-V,2004,4,4.0,Hybrid,Japan,73488
+Volkswagen,Golf,2018,4,1.8,Diesel,USA,29273
+Toyota,Corolla,2001,4,2.0,Hybrid,Brazil,12454
+Kia,Sportage,2019,2,3.5,Gasoline,India,72927
+Volkswagen,Tiguan,2018,2,2.0,Diesel,Japan,57943
+Mercedes-Benz,C-Class,2017,2,3.0,Electric,Brazil,17142
+Volkswagen,Golf,2008,4,2.0,Diesel,South Korea,63586
+Toyota,Camry,2012,2,3.0,Electric,India,17083
+Hyundai,Elantra,2019,4,1.2,Diesel,USA,38649
+Mercedes-Benz,E-Class,2015,4,1.8,Gasoline,China,13702
+Mercedes-Benz,GLC,2023,2,1.2,Electric,China,22800
+Hyundai,Tucson,2019,2,3.5,Diesel,South Korea,12454
+Ford,Mustang,2019,4,1.4,Gasoline,India,23901
+Ford,Escape,2019,2,3.0,Diesel,Brazil,53478
+Ford,Mustang,2013,4,1.4,Electric,Japan,33774
+Nissan,Sentra,2000,4,2.0,Electric,USA,56030
+Chevrolet,Tahoe,2004,4,3.5,Diesel,USA,42632
+Volkswagen,Golf,2009,2,2.0,Diesel,Mexico,60940
+Mercedes-Benz,E-Class,2013,2,2.0,Electric,USA,49148
+Hyundai,Sonata,2004,2,1.4,Gasoline,Brazil,60940
+Hyundai,Tucson,2013,2,3.0,Electric,Germany,77190
+Honda,Fit,2021,4,1.6,Electric,India,46438
+BMW,3 Series,2011,4,2.0,Hybrid,Brazil,12832
+Honda,Civic,2000,4,1.6,Electric,Mexico,61571
+Toyota,Prius,2021,2,2.0,Diesel,Brazil,13589
+Hyundai,Sonata,2016,4,1.8,Electric,China,13008
+Volkswagen,Golf,2018,4,3.0,Gasoline,Germany,37833
+Chevrolet,Malibu,2007,2,3.0,Gasoline,South Korea,34808
+Kia,Rio,2017,2,4.0,Gasoline,Brazil,12699
+BMW,5 Series,2019,4,1.8,Gasoline,Japan,40730
+Hyundai,Sonata,2014,2,1.4,Hybrid,India,75724
+Volkswagen,Jetta,2014,2,2.2,Gasoline,Japan,72201
+Nissan,Altima,2019,4,1.6,Diesel,South Korea,68016
+Honda,Accord,2017,2,1.2,Electric,South Korea,17142
+Toyota,Camry,2003,2,3.0,Hybrid,USA,24293
+Nissan,Sentra,2014,2,2.0,Diesel,Japan,44573
+Toyota,Prius,2005,2,2.4,Hybrid,Brazil,22339
+Volkswagen,Jetta,2014,4,4.0,Gasoline,Japan,46438
+Honda,Civic,2008,4,1.0,Hybrid,Mexico,60940
+Toyota,Prius,2009,2,2.2,Electric,Japan,41637
+Chevrolet,Tahoe,2001,4,1.4,Gasoline,Germany,59182
+Hyundai,Tucson,2023,4,1.6,Hybrid,India,36152
+Honda,Fit,2015,2,1.4,Electric,USA,26706
+Toyota,Prius,2017,4,1.8,Diesel,Japan,63586
+Toyota,Prius,2017,4,1.9,Diesel,Japan,63586
+Honda,Fit,2015,2,1.4,Electric,USA,26705
+Honda,Fit,2015,2,1.4,Electric,USA,26705

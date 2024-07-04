@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     # NUESTRAS
     "product",
     "home",
-    "users"
+    "users",
+    "vehiculos",
 ]
  
 MIDDLEWARE = [
