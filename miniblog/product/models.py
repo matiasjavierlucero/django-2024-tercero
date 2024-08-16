@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
 
+from product.managers import ProductQuerySet
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -27,6 +28,9 @@ class Product(models.Model):
         null=True,
     )
     stock = models.IntegerField(default=0)
+    active = models.BooleanField(default=True)
+
+    objects = ProductQuerySet.as_manager()
 
     def __str__(self):
         return  self.name

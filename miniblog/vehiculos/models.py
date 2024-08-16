@@ -19,6 +19,7 @@ class Vehiculo(models.Model):
     tipo_combustible = models.CharField(max_length=50)
     pais_fabricacion = models.CharField(max_length=50)
     precio_dolares = models.IntegerField()
+    activo = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return f"{self.marca} {self.modelo} {self.fabricado_el}"
