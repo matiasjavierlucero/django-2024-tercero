@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import (
     authenticate,
     login, 
@@ -10,6 +12,10 @@ from django.views import View
 from users.forms import UserRegisterForm
 
 # Create your views here.
+
+loggers = logging.getLogger('personalizado')
+
+
 class LoginView(View):
 
     def get(self, request):
@@ -21,15 +27,18 @@ class LoginView(View):
     def post(self, request):    
         username = request.POST.get('username')
         password = request.POST.get('password')
-        if username and password:
-            user = authenticate(
-                request,
-                username=username,
-                password=password
-            )
-            if user:
-                login(request, user)
-                return redirect('index')
+        
+        user = authenticate(
+            request,
+            username=username,
+            password=password
+        )
+        if user:
+            login(request, user)
+            return redirect('index')
+        
+        loggers.error("USUARIO LOGEADO", exc_info=dict(INFORMACION="INFO"))
+
         return redirect('login')
 
 
