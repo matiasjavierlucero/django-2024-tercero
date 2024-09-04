@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-from product.models import Category
+from product.models import Category, ProductImage
 from product.forms import ProductForm
 from product.repositories.product import ProductRepository
+
 
 repo = ProductRepository()
 
@@ -19,10 +20,14 @@ def product_list(request):
 
 def product_detail(request, id):
     producto = repo.get_by_id(id=id)
+    imagen = ProductImage.objects.filter(product=producto).first()
     return render(
         request,
         'products/detail.html',
-        {"product":producto}
+        {
+            "product":producto,
+            "imagen":imagen
+        }
     )
 
 def product_delete(request, id):

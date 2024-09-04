@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import (
     authenticate,
     login, 
@@ -7,8 +9,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.views import View
 
+from users.forms import UserRegisterForm
 
 # Create your views here.
+
+loggers = logging.getLogger('personalizado')
+
+
 class LoginView(View):
 
     def get(self, request):
@@ -20,15 +27,18 @@ class LoginView(View):
     def post(self, request):    
         username = request.POST.get('username')
         password = request.POST.get('password')
-        if username and password:
-            user = authenticate(
-                request,
-                username=username,
-                password=password
-            )
-            if user:
-                login(request, user)
-                return redirect('index')
+        
+        user = authenticate(
+            request,
+            username=username,
+            password=password
+        )
+        if user:
+            login(request, user)
+            return redirect('index')
+        
+        loggers.error("USUARIO LOGEADO", exc_info=dict(INFORMACION="INFO"))
+
         return redirect('login')
 
 
@@ -37,6 +47,35 @@ class LogoutView(View):
         logout(request)
         return redirect('login')
 
+
+class RegisterView(View):
+    form_class = UserRegisterForm
+    template_name = 'home/register.html'
+
+    def get(self, request):
+        form = self.form_class()
+        return render(
+            request,
+            self.template_name,
+            dict(
+                form=form
+            )
+        )
+    
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+
+        return render(
+            request,
+            self.template_name,
+            dict(
+                form=form
+            )
+        )
 
 @login_required(login_url='login')
 def index_view(request):

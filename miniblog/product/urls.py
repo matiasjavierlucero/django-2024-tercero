@@ -18,8 +18,10 @@ from product.views.product_review_view import (
     ProductReviewCreateView,
     ProductReviewView,
     ProductReviewDetailView,
-    ProductReviewUpdateView
+    ProductReviewUpdateView,
 )
+from product.views.product_image_view import ProductImageView
+
 
 urlpatterns = [
     path(route="", view=product_list, name="product_list"),
@@ -62,4 +64,9 @@ urlpatterns = [
         view=ProductReviewUpdateView.as_view(),
         name="product_reviews_update",
         ),
+    path(
+        route="product_images/",
+        view=ProductImageView.as_view(),
+        name="product_images",
+    ),
 ]
