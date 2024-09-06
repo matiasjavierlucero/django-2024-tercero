@@ -196,6 +196,6 @@ LOGGING = {
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'api_v1.paginations.MiPaginador',
     'PAGE_SIZE': 25
 }
