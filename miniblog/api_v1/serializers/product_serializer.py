@@ -6,7 +6,7 @@ from product.models import Category, Product
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('name',)
+        fields = ('name','pk')
 
 class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
@@ -39,3 +39,25 @@ class ProductSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+
+    # TODO movimos el create a la vista
+    """
+    def create(self, validated_data):
+
+        category_data =  validated_data.pop(
+            'category', None
+        )
+        category, created = Category.objects.get_or_create(
+          **category_data   
+        )
+        
+        product = Product.objects.create(
+            name=validated_data['name'],
+            price=validated_data['price'],
+            stock=validated_data['stock'],
+            active=True,
+            category=category,
+        )
+        return product
+
+    """
