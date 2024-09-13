@@ -2,7 +2,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
+from api_v1.filters import ProductFilter
 from api_v1.serializers.product_serializer import ProductSerializer
 from product.models import Category ,Product
 
@@ -11,8 +13,9 @@ class ProducViewSet(ModelViewSet):
     # GET(LIST); POST(CERATE); PUT(UPDATE); PATCH(PARTIAL UPDATE); DELETE(DESTROY) Y UN DETAIL(RETRIEVE)
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ['name', 'stock', 'category__name']
+    filterset_class = ProductFilter
     
     # FILTROS PERSONALIZADOS CASEROS
 
@@ -27,7 +30,7 @@ class ProducViewSet(ModelViewSet):
         if max_price :
             queryset = queryset.filter(price__lte=max_price)
         if category:
-            queryset = queryset.filter(category__name=category)
+            queryset = queryset.filter(category__name__icontains=category)
         return queryset 
     """
 
