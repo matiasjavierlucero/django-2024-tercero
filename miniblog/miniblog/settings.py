@@ -49,6 +49,7 @@ SELF_APPS = [
 ]
 EXTERNAL_APPS = [
     'rest_framework',
+    'django_filters'
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + EXTERNAL_APPS + SELF_APPS
@@ -192,4 +193,10 @@ LOGGING = {
             'level': 'DEBUG'
         }
     }
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'api_v1.paginations.MiPaginador',
+    'PAGE_SIZE': 25
 }
