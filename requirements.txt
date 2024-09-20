@@ -6,12 +6,16 @@ certifi==2024.6.2
 charset-normalizer==3.3.2
 decorator==5.1.1
 Django==5.0.6
+django-factory-boy==1.0.0
 django-filter==24.3
 djangorestframework==3.15.2
 exceptiongroup==1.2.1
 executing==2.0.1
+factory_boy==3.3.1
+Faker==28.4.1
 idna==3.7
 iniconfig==2.0.0
+ipdb==0.13.13
 ipython==8.26.0
 jedi==0.19.1
 jmespath==1.0.1
