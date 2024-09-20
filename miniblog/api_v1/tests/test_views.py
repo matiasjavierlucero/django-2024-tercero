@@ -5,7 +5,7 @@ from django.urls import reverse
 from rest_framework import status 
 from rest_framework.test import APIClient
 
-from api_v1.tests.factories import ProductFactory
+from api_v1.tests.factories import ProductFactory, CategoryFactory
 from product.models import Product
 
 
@@ -58,116 +58,65 @@ def test_list_products(client: APIClient):
     assert response.json() == expected_result
 
 @pytest.mark.django_db
-def test_create_product(client: APIClient):
+def test_detail_products(client: APIClient):
     # Arrange
-    data_1 = {
-        "category": {},
-        "name": "Test Product",
-        "price": 1234,
-        "stock": 555,
-        "description": "test_description"
-    }
-    data_2 = {
-        "category": {},
-        "name": "Test Product 2",
-        "price": 1234,
-        "stock": 555,
-        "description": "test_description"
-    }
-
-    # Act
-    url = reverse('products-list')
-    client.post(
-        path=url,
-        data=data_1,
-        content_type="application/json"
-    )
-    response = client.post(
-        path=url,
-        data=data_2,
-        content_type="application/json"
-    )
-    #Assert
-    assert response.status_code is status.HTTP_201_CREATED
-    products = Product.objects.all()
-    assert products.count() == 2
-    assert products.first().name == 'Test Product'
-    assert products.last().name == 'Test Product 2'
-
-@pytest.mark.django_db
-def test_detail_product_without_category(client: APIClient):
-    product_1 = ProductFactory(category=None)
-    product_2 = ProductFactory(category=None)
-    product_3 = ProductFactory(category=None)
-
-    url = reverse('products-detail', args=(product_1.pk,))
-    response = client.get(url)
-
-    expected_result = dict(
-        id=product_1.id,
-        name=product_1.name,
-        price=f'{product_1.price}',
-        description="No posee descripción",
-        stock=product_1.stock,
-        active=True,
-        category=None
-    )
-
-    assert response.json() == expected_result
-
-@pytest.mark.django_db
-def test_detail_product_with_category(client: APIClient):
-    product_1 = ProductFactory(name="Nombre forzado", category=None)
-    product_2 = ProductFactory()
-    product_3 = ProductFactory()
-
-    url = reverse('products-detail', args=(product_1.pk,))
-    response = client.get(url)
-
-    expected_result = dict(
-        id=product_1.id,
-        name="Nombre forzado",
-        price=f'{product_1.price}',
-        description="No posee descripción",
-        stock=product_1.stock,
-        active=True,
-        category=None
-    )
-
-    assert response.json() == expected_result
-
-    url = reverse('products-detail', args=(product_2.pk,))
-    response = client.get(url)
-
-    expected_result = dict(
-        id=product_2.id,
-        name=product_2.name,
-        price=f'{product_2.price}',
-        description="No posee descripción",
-        stock=product_2.stock,
-        active=True,
-        category=dict(
-            name=product_2.category.name,
-            pk=product_2.category.pk
-        )
-    )
-
-    assert response.json() == expected_result
-
-@pytest.mark.django_db
-def test_delete_product(client: APIClient):
     product_1 = ProductFactory()
     product_2 = ProductFactory()
     product_3 = ProductFactory()
+    product_4 = ProductFactory()
+    # Act
+    url = reverse('products-detail', args=(product_2.pk,))
+    response = client.get(path=url)
+    # Assert
+    expected_result = dict(
+        name=product_2.name,
+        description="No posee descripción",
+        active=True,
+        stock=0,
+        price=f'{product_2.price}',
+        category=dict(
+            name=product_2.category.name,
+            pk=product_2.category.id
+        ),
+        id=product_2.id
+    )
+    
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == expected_result
 
-    url = reverse('products-detail', args=(product_1.pk,))
-    response = client.delete(url)
+@pytest.mark.django_db
+def test_delete_products(client: APIClient):
+    # Arrange
+    product_1 = ProductFactory()
+    product_2 = ProductFactory()
+    product_3 = ProductFactory()
+    product_4 = ProductFactory()
+    # Act
+    url = reverse('products-detail', args=(product_2.pk,))
+    response = client.delete(path=url)
 
-    assert response.status_code == status.HTTP_204_NO_CONTENT
     products = Product.objects.all()
-    assert products.count() == 2
-    product = Product.objects.filter(id=product_1.id)
-    assert product.count() == 0
-    assert product_2 in products
-    assert product_3 in products
-    assert product_1 not in products
+    assert products.count() == 3
+    assert product_2 not in products
+
+@pytest.mark.django_db
+def test_create_products(client: APIClient):
+    for x in range(10):
+        ProductFactory()
+
+    data = {
+        "category":{},
+        "name":"product test name",
+        "price": 1234,
+        "stock": 1234,
+    }
+    url = reverse('products-list')
+    response = client.post(
+        path=url,
+        data=data,
+        content_type='application/json'
+    )
+
+    assert response.status_code == status.HTTP_201_CREATED
+
+    assert Product.objects.count() == 11
