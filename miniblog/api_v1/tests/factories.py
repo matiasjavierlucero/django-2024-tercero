@@ -1,13 +1,13 @@
 import factory
 from factory.django import DjangoModelFactory
 
-from product.models import Category, Product
+from product.models import Product, Category
 
 
 class CategoryFactory(DjangoModelFactory):
+
     class Meta:
         model = Category
-    name = factory.Sequence(lambda n: 'Category_%d' %n)
 
 class ProductFactory(DjangoModelFactory):
     class Meta:
