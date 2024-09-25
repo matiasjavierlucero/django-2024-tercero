@@ -17,34 +17,19 @@ class ProducViewSet(ModelViewSet):
     search_fields = ['name', 'stock', 'category__name']
     filterset_class = ProductFilter
     
-    # FILTROS PERSONALIZADOS CASEROS
-
-    """ 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        category = self.request.query_params.get('category')
-        min_price = self.request.query_params.get('min_price')
-        max_price = self.request.query_params.get('max_price')
-        if min_price:
-            queryset = queryset.filter(price__gte=min_price)
-        if max_price :
-            queryset = queryset.filter(price__lte=max_price)
-        if category:
-            queryset = queryset.filter(category__name__icontains=category)
-        return queryset 
-    """
-
     def create(self, request, *args, **kwargs):
         # Extraemos los datos de la peticion
         data = request.data
 
         # Extraemos o creamos la categoria
         category_data = data.get('category')
-        category_name = category_data.get('name')
-        category, created = Category.objects.get_or_create(
-            name=category_name
-            )
-    
+
+        if len(category_data) > 0:
+            category_name = category_data.get('name')
+            category, created = Category.objects.get_or_create(
+                name=category_name
+                )
+        category = None
         # Creamos el producto
         product = Product.objects.create(
             name=data.get('name'),
