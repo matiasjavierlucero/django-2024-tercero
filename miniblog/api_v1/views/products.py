@@ -1,7 +1,11 @@
+import csv
+
 from rest_framework import status
+from rest_framework.decorators import action
+from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.filters import SearchFilter
+from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 
 from api_v1.filters import ProductFilter
@@ -51,3 +55,65 @@ class ProducViewSet(ModelViewSet):
         instance.delete()
         
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['get'], detail=False, url_path='download-csv')
+    def download_csv(self, request):
+        # Defino que voy a retornar y bajo que nombre
+        categoria = request.query_params.get('category', None)
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="product.csv"'
+
+        writer = csv.writer(response)
+        writer.writerow(
+            [
+                "Nombre", "Descripcion", "Precio", "Categoria", "Stock"
+            ]
+        )
+        products = self.get_queryset()
+        if categoria:
+            products = self.get_queryset().filter(category__name=categoria)
+
+        for product in products:
+            writer.writerow(
+            [
+                product.name,
+                product.description, 
+                product.price, 
+                product.category.name if product.category else 'No posee', 
+                product.stock,
+            ]
+        )
+        return response
+    
+    @action(detail=False, methods=['get'], url_path='download-price-stock-csv')
+    def download_price_stock(self, request):
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="total_price_stock.csv"'
+
+        file = csv.writer(response)
+        file.writerow(
+            [
+                "Nombre",
+                "Precio",
+                "Cantidad",
+                "Valor Total"
+            ]
+        )
+        for product in self.get_queryset():
+            file.writerow(
+                [
+                    product.name,
+                    product.price,
+                    product.stock,
+                    product.price * product.stock
+                ]
+            )
+        return response
+    
+    @action(methods=['get'], detail=False, url_path='latest')
+    def last_product(self, request):
+        last_product = self.get_queryset().last()
+        serializer = self.serializer_class(last_product)
+        return Response(serializer.data)
+    
