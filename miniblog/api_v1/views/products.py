@@ -59,6 +59,7 @@ class ProducViewSet(ModelViewSet):
     @action(methods=['get'], detail=False, url_path='download-csv')
     def download_csv(self, request):
         # Defino que voy a retornar y bajo que nombre
+        categoria = request.query_params.get('category', None)
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="product.csv"'
 
@@ -68,7 +69,11 @@ class ProducViewSet(ModelViewSet):
                 "Nombre", "Descripcion", "Precio", "Categoria", "Stock"
             ]
         )
-        for product in self.get_queryset():
+        products = self.get_queryset()
+        if categoria:
+            products = self.get_queryset().filter(category__name=categoria)
+
+        for product in products:
             writer.writerow(
             [
                 product.name,
@@ -79,3 +84,36 @@ class ProducViewSet(ModelViewSet):
             ]
         )
         return response
+    
+    @action(detail=False, methods=['get'], url_path='download-price-stock-csv')
+    def download_price_stock(self, request):
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="total_price_stock.csv"'
+
+        file = csv.writer(response)
+        file.writerow(
+            [
+                "Nombre",
+                "Precio",
+                "Cantidad",
+                "Valor Total"
+            ]
+        )
+        for product in self.get_queryset():
+            file.writerow(
+                [
+                    product.name,
+                    product.price,
+                    product.stock,
+                    product.price * product.stock
+                ]
+            )
+        return response
+    
+    @action(methods=['get'], detail=False, url_path='latest')
+    def last_product(self, request):
+        last_product = self.get_queryset().last()
+        serializer = self.serializer_class(last_product)
+        return Response(serializer.data)
+    
