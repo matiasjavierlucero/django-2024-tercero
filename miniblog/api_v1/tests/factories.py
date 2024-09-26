@@ -9,6 +9,7 @@ class CategoryFactory(DjangoModelFactory):
     class Meta:
         model = Category
 
+
 class ProductFactory(DjangoModelFactory):
     class Meta:
         model = Product

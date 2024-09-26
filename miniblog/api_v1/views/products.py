@@ -1,7 +1,11 @@
+import csv
+
 from rest_framework import status
+from rest_framework.decorators import action
+from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.filters import SearchFilter
+from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 
 from api_v1.filters import ProductFilter
@@ -51,3 +55,27 @@ class ProducViewSet(ModelViewSet):
         instance.delete()
         
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['get'], detail=False, url_path='download-csv')
+    def download_csv(self, request):
+        # Defino que voy a retornar y bajo que nombre
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="product.csv"'
+
+        writer = csv.writer(response)
+        writer.writerow(
+            [
+                "Nombre", "Descripcion", "Precio", "Categoria", "Stock"
+            ]
+        )
+        for product in self.get_queryset():
+            writer.writerow(
+            [
+                product.name,
+                product.description, 
+                product.price, 
+                product.category.name if product.category else 'No posee', 
+                product.stock,
+            ]
+        )
+        return response

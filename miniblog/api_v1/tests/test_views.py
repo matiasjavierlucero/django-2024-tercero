@@ -101,6 +101,7 @@ def test_delete_products(client: APIClient):
 
 @pytest.mark.django_db
 def test_create_products(client: APIClient):
+    # Arrange
     for x in range(10):
         ProductFactory()
 
@@ -110,6 +111,7 @@ def test_create_products(client: APIClient):
         "price": 1234,
         "stock": 1234,
     }
+    # Act
     url = reverse('products-list')
     response = client.post(
         path=url,
@@ -117,6 +119,7 @@ def test_create_products(client: APIClient):
         content_type='application/json'
     )
 
+    # Assert
     assert response.status_code == status.HTTP_201_CREATED
 
     assert Product.objects.count() == 11
