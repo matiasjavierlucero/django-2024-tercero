@@ -78,7 +78,8 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "miniblog.context_processors.context_processors_dolar.dolar_exchange_rates",
-                "miniblog.context_processors.context_processors_names.all_products_names"
+                "miniblog.context_processors.context_processors_names.all_products_names",
+                "miniblog.context_processors.context_processors_profile.profile"
             ],
         },
     },
@@ -119,15 +120,24 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
+from django.utils.translation import gettext_lazy as _
+LANGUAGE_CODE = "en"
 
-LANGUAGE_CODE = "es"
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Español')),
+)
 
 TIME_ZONE = "UTC"
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
+import os
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

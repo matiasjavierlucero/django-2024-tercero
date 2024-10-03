@@ -1,6 +1,12 @@
 from django.shortcuts import redirect, render, get_object_or_404, get_list_or_404
 from django.views import View
-
+from django.utils.translation import (
+    activate,
+    get_language,
+    gettext_lazy as _,
+    deactivate
+)
+from users.models import Profile
 from product.models import ProductReview, Product
 from product.repositories.product import ProductRepository
 from product.repositories.product_reviews import ProductReviewRepository
@@ -9,12 +15,16 @@ from product.forms import ProductReviewForm
 
 class ProductReviewView(View):
     def get(self, request, *args, **kwargs):
+        if not request.user.is_anonymous:
+            profile = Profile.objects.get(user=request.user)
+            lang = profile.language
+            activate(lang)
         repo = ProductReviewRepository()
         reviews = repo.get_all()
 
         if request.user.is_authenticated and not request.user.is_staff:
             reviews = reviews.filter(author=request.user)
-
+        
         return render(
             request,
             'product_reviews/list.html',

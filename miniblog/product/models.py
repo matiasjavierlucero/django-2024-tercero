@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from product.managers import ProductQuerySet
 
@@ -12,25 +13,38 @@ class Category(models.Model):
 
 # Create your models here.
 class Product(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, verbose_name=_('name'))
     description = models.TextField(
         null=True,
         blank=True,
+        verbose_name=_('description')
     )
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
+        verbose_name=_('price')
     )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
         related_name='products',
         null=True,
+        verbose_name=_('category')
     )
-    stock = models.IntegerField(default=0)
-    active = models.BooleanField(default=True)
+    stock = models.IntegerField(
+        default=0,
+        verbose_name=_('stock'),
+    )
+    active = models.BooleanField(
+        default=True, 
+        verbose_name=_('active'),
+    )
 
     objects = ProductQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = _('Cosa')
+        verbose_name_plural = _("Cosita")
 
     def __str__(self):
         return  self.name
@@ -93,3 +107,9 @@ class ProductImage(models.Model):
     def __str__(self):
         return self.description or f'Image of {self.product.name}'
 
+class Autos(models.Model):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = _('Auto')
+        verbose_name_plural = _('Autos')

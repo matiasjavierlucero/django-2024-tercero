@@ -10,6 +10,7 @@ from django.shortcuts import redirect, render
 from django.views import View
 
 from users.forms import UserRegisterForm
+from users.models import Profile
 
 # Create your views here.
 
@@ -76,6 +77,17 @@ class RegisterView(View):
                 form=form
             )
         )
+    
+class UpdateLang(View):
+    def get(self, request):
+        profile = Profile.objects.get(user=request.user)
+        lang = profile.language
+        if lang == 'es':
+            profile.language = 'en'
+        if lang == 'en':
+            profile.language = 'es'
+        profile.save()
+        return redirect(request.META.get('HTTP_REFERER', 'index'))
 
 @login_required(login_url='login')
 def index_view(request):
