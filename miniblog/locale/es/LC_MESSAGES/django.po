@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-02 20:46-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: miniblog/settings.py:126
+msgid "English"
+msgstr ""
+
+#: miniblog/settings.py:127
+msgid "Español"
+msgstr ""
+
+#: product/models.py:16
+msgid "name"
+msgstr "nombre"
+
+#: product/models.py:20
+msgid "description"
+msgstr "descripcion"
+
+#: product/models.py:25
+msgid "price"
+msgstr "precio"
+
+#: product/models.py:32
+msgid "category"
+msgstr "categoria"
+
+#: product/models.py:36
+msgid "stock"
+msgstr "cantidad"
+
+#: product/models.py:40
+msgid "active"
+msgstr "activo"
+
+#: product/templates/product_reviews/list.html:12
+msgid "Producto"
+msgstr "Producto"
+
+#: product/templates/product_reviews/list.html:13
+msgid "Autor"
+msgstr Autor
+
+#: product/templates/product_reviews/list.html:14
+msgid "Opinion"
+msgstr Opinion
+
+#: product/templates/product_reviews/list.html:15
+msgid "Fecha"
+msgstr "Fecha"
+
+#: product/templates/product_reviews/list.html:16
+msgid "Valuacion"
+msgstr "Valuacion"
+
+msgid "Lista de Opiniones"
+msgstr "Lista de Opiniones"
+
+
+msgid "Dar una opinion"
+msgstr "Dar una opinion"
+
+
+msgid "Autos"
+msgstr "Autos"
+
+msgid "Auto"
+msgstr "Auto"

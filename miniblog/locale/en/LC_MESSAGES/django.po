@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-02 21:58-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: miniblog/settings.py:127
+msgid "English"
+msgstr ""
+
+#: miniblog/settings.py:128
+msgid "Español"
+msgstr ""
+
+#: product/models.py:16
+msgid "name"
+msgstr ""
+
+#: product/models.py:20
+msgid "description"
+msgstr ""
+
+#: product/models.py:25
+msgid "price"
+msgstr ""
+
+#: product/models.py:32
+msgid "category"
+msgstr ""
+
+#: product/models.py:36
+msgid "stock"
+msgstr ""
+
+#: product/models.py:40
+msgid "active"
+msgstr ""
+
+#: product/models.py:46
+msgid "Cosa"
+msgstr ""
+
+#: product/models.py:47
+msgid "Cosita"
+msgstr ""
+
+
+msgid "Autor"
+msgstr "Author"
+
+#: product/templates/product_reviews/list.html:7
+msgid "Lista de Opiniones"
+msgstr "Reviews List"
+
+#: product/templates/product_reviews/list.html:8
+msgid "Dar una opinion"
+msgstr "Write review"
+
+#: product/templates/product_reviews/list.html:12
+msgid "Producto"
+msgstr "Product"
+
+#: product/templates/product_reviews/list.html:13
+msgid "Autor"
+msgstr "Author"
+
+#: product/templates/product_reviews/list.html:14
+msgid "Opinion"
+msgstr "Review"
+
+#: product/templates/product_reviews/list.html:15
+msgid "Fecha"
+msgstr "Date"
+
+#: product/templates/product_reviews/list.html:16
+msgid "Valuacion"
+msgstr "Rank"
+
+msgid "Autos"
+msgstr "Cars"
+
+msgid "Auto"
+msgstr "Car"

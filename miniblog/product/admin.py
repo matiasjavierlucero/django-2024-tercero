@@ -2,10 +2,16 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from product.models import (
+    Autos,
     Category,
     Product,
     ProductImage,
 )
+
+
+@admin.register(Autos)
+class AutosAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
