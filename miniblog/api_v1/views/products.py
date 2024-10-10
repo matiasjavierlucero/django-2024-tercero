@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -13,8 +13,8 @@ from api_v1.serializers.product_serializer import ProductSerializer
 from product.models import Category ,Product
 
 
-class ProducViewSet(ModelViewSet):
-    # GET(LIST); POST(CERATE); PUT(UPDATE); PATCH(PARTIAL UPDATE); DELETE(DESTROY) Y UN DETAIL(RETRIEVE)
+class ProductModelViewSet(ModelViewSet):
+    # GET(LIST); POST(CREATE); PUT(UPDATE); PATCH(PARTIAL UPDATE); DELETE(DESTROY) Y UN DETAIL(RETRIEVE)
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [SearchFilter, DjangoFilterBackend]
@@ -117,3 +117,76 @@ class ProducViewSet(ModelViewSet):
         serializer = self.serializer_class(last_product)
         return Response(serializer.data)
     
+
+## VISTA UTILIZANDO APIView
+from rest_framework.views import APIView
+
+class ProductApiView(APIView):
+    def get(self, request, *args, **kwargs):
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        product_id = self.kwargs.get('pk', None)
+        if product_id:
+            products = products.get(id=product_id)
+            serializer = ProductSerializer(products)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        data = request.data
+
+        # Extraemos o creamos la categoria
+        category_data = data.get('category')
+
+        if len(category_data) > 0:
+            category_name = category_data.get('name')
+            category, created = Category.objects.get_or_create(
+                name=category_name
+                )
+        category = None
+        # Creamos el producto
+        product = Product.objects.create(
+            name=data.get('name'),
+            description=data.get('description', None),
+            price=data.get('price'),
+            stock=data.get('stock'),
+            active=data.get('active', True),
+            category=category or None
+        )
+
+        serializer = ProductSerializer(product)
+        return Response(
+            serializer.data,
+            status=status.HTTP_201_CREATED
+        )
+    
+## UTILIZANDO GENERIC API VIEWS
+from rest_framework import generics
+from rest_framework import mixins
+
+class ProductListCreateGenericAPIView(
+    generics.GenericAPIView,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get(self, request, *args, **kwargs):
+        product_id = self.kwargs.get('pk', None)
+        if product_id:
+            return self.retrieve(request, *args, **kwargs)
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
+## READ ONLY MODEL VIEW SET
+class ProductReadOnly(ReadOnlyModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
