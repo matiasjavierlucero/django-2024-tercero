@@ -120,7 +120,7 @@ class ProductModelViewSet(ModelViewSet):
 
 ## VISTA UTILIZANDO APIView
 from rest_framework.views import APIView
-
+    
 class ProductApiView(APIView):
     def get(self, request, *args, **kwargs):
         products = Product.objects.all()

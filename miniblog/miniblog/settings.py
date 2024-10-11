@@ -210,3 +210,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'api_v1.paginations.MiPaginador',
     'PAGE_SIZE': 25
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '4885845d774982'
+EMAIL_HOST_PASSWORD = '3c385de62550f9'
+EMAIL_PORT = '2525'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "noreply@itec.com"

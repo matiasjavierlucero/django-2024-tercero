@@ -4,8 +4,10 @@ from api_v1.views.products import (
     ProductModelViewSet, 
     ProductApiView, 
     ProductListCreateGenericAPIView,
-    ProductReadOnly
+    ProductReadOnly,
 )
+from api_v1.views.emails import send_test_email
+
 
 # UTILIZADO PARA MODELVIEWSET
 router = DefaultRouter()
@@ -32,6 +34,7 @@ urlpatterns = [
         ProductListCreateGenericAPIView.as_view(),
         name='products_generic_apiview_retrieve'
     ),
+    path('send_email/', send_test_email, name='send_email')
 ]
 
 urlpatterns += router.urls
