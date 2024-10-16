@@ -1,0 +1,17 @@
+{% extends "emails/base_email_templates.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h4>Hola {{usuario}}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>Estos son los productos recomendados para ti</h4>
+            {% for product in products %}
+                <li>{{ product.name }} {{product.price}}</li>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
